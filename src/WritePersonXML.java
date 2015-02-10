@@ -22,7 +22,7 @@ public class WritePersonXML {
 		Address address = new Address();
 	}
  
-	public static void main(person) {
+	public static void main() {
  
 	  try {
  
