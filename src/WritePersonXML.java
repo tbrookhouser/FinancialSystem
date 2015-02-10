@@ -1,6 +1,8 @@
-package com.mkyong.core;
+
  
 import java.io.File;
+import java.util.ArrayList;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -10,26 +12,32 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
  
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
  
 public class WritePersonXML {
 	
-	public WritePersonXML{
-		Person person = new Person();
-		Name name = new Name();
-		Address address = new Address();
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-	}
- 
-	public void writeToPersonXml() {
- 
-	  try {
- 
+
+	private Name name;
+	private Address address;
+	
+	public WritePersonXML(){
+
+		this.name = new Name();
+		this.address = new Address();
 		//DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		//DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+	}
+ 
+	public void writeToPersonXml(Person person) {
+ 
+	  
+		try {
+ 
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
  
 		// root elements
 		Document doc = docBuilder.newDocument();
@@ -37,55 +45,60 @@ public class WritePersonXML {
 		doc.appendChild(rootElement);
  
 		// person elements
-		Element staff = doc.createElement("person");
-		rootElement.appendChild(person);
+		Element personTag = doc.createElement("person");
+		rootElement.appendChild(personTag);
  
 		// code elements
 		Element code = doc.createElement("code");
-		code.appendChild(doc.createTextNode(person.getCode()));
-		person.appendChild(code);
+		code.appendChild(doc.createTextNode(person.getIdNumber()));
+		personTag.appendChild(code);
  
 		// firstName elements
 		Element firstName = doc.createElement("firstName");
-		lastname.appendChild(doc.createTextNode(name.getFirstName()));
-		person.appendChild(firstName);
+		firstName.appendChild(doc.createTextNode(name.getFirstName()));
+		personTag.appendChild(firstName);
  
 		// lastName elements
 		Element lastName = doc.createElement("lastName");
-		nickname.appendChild(doc.createTextNode(name.getLastName));
-		person.appendChild(lastName);
+		lastName.appendChild(doc.createTextNode(name.getLastName()));
+		personTag.appendChild(lastName);
  
 		// address elements
-		Element address = doc.createElement("address");
-		person.appendChild(address);
+		Element addressTag = doc.createElement("address");
+		personTag.appendChild(addressTag);
 		
 		Element street = doc.createElement("street");
 		street.appendChild(doc.createTextNode(address.getStreet1()));
-		address.appendChild(street);
+		addressTag.appendChild(street);
 		
 		Element city = doc.createElement("city");
 		city.appendChild(doc.createTextNode(address.getCity()));
-		address.appendChild(city);
+		addressTag.appendChild(city);
 		
 		Element state = doc.createElement("state");
 		state.appendChild(doc.createTextNode(address.getState()));
-		address.appendChild(state);
+		addressTag.appendChild(state);
 		
 		Element country = doc.createElement("country");
 		country.appendChild(doc.createTextNode(address.getCountry()));
-		address.appendChild(country);
+		addressTag.appendChild(country);
 		
 		Element zipcode = doc.createElement("zipcode");
 		zipcode.appendChild(doc.createTextNode(address.getZip()));
-		address.appendChild(zipcode);
+		addressTag.appendChild(zipcode);
 		
 		Element emails = doc.createElement("emails");
-		person.appendChild(emails);
+		personTag.appendChild(emails);
 		
-		Element string = doc.createElement("string");
-		string.appendChild(person.getEmail());
-		emails.appendChild(string);
-		
+		for(int i = 0; i< person.getEmail().size(); i++){  
+			String [] emailArray = new String [person.getEmail().size()];
+			ArrayList <String> emailList = person.getEmail();
+			emailArray[i] = emailList.get(i);
+			
+			Element string = doc.createElement("string");
+			string.appendChild(doc.createTextNode(emailArray[i]));
+			emails.appendChild(string);
+		}
 		
 		// write the content into xml file
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();

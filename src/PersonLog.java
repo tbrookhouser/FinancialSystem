@@ -70,8 +70,10 @@ public class PersonLog {
 			String line = null;
 			while((line = reader.readLine()) != null)//while there is still a line in the file
 			{
-				personObject = personList.add(parsePerson(line));
-				writePersonXML.writeToPersonXml(personObject);
+				System.out.println(line);
+				Person person = parsePerson(line);
+				personList.add(person);
+				writePersonXml.writeToPersonXml(person);
 			}
 		}
 		
@@ -84,14 +86,14 @@ public class PersonLog {
 		public Person parsePerson(String token)
 		{
 			String[] array = token.split(";");
-			int idNumber = Integer.parseInt(array[0]);
+			String idNumber = array[0];
 			String brokerData = array[1];
 			String name = array[2];
 			Name customerName = parseName(name);
 			String address = array[3];
 			Address customerAddress = parseAddress(address);
 			String email = array[4];
-			ArrayList customerEmail = parseEmail(email);
+			String[] customerEmail = parseEmail(email);
 			Person customer = new Person(idNumber, brokerData, customerName, customerAddress, customerEmail);
 			return customer;
 		}
@@ -115,8 +117,9 @@ public class PersonLog {
 			return nameObject;
 		}
 		
-		public ArrayList parseEmail(String email){
-			ArrayList <String> emailList = (ArrayList<String>) Arrays.asList(email.split("\\s*,\\s*"));
+		public String[] parseEmail(String email){
+			System.out.println(email);
+			String[] emailList = email.split(",");
 			return emailList;
 		}
 

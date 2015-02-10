@@ -57,17 +57,31 @@ public class AssetLog {
 	 * @param fileName
 	 * @throws IOException
 	 */
-	public void splitPerson(String fileName) throws IOException
+	public void splitAsset(String fileName) throws IOException
 	{
 		
 		File file = new File(fileName);
 		BufferedReader reader = new BufferedReader(new FileReader(file));
-		Scanner personScan = new Scanner(reader);
+		Scanner assetScan = new Scanner(reader);
 		
 		String line = null;
 		while((line = reader.readLine()) != null)//while there is still a line in the file
 		{
-			personList.add(parsePerson(line));
+			assetList.add(checkAsset(line));
+		}
+	}
+	
+	
+	public void checkAssetType(String token){
+		String[] array = token.split(";");
+		if (array[1] == "D" ){
+			parseDA(token);
+		}
+		else if (array[2] == "S"){
+			
+		}
+		else {
+			
 		}
 	}
 	
@@ -77,19 +91,12 @@ public class AssetLog {
 	 * @param token
 	 * @return Vehicle object 
 	 */
-	public Person parsePerson(String token)
+	public DepositAccount parseDA(String token)
 	{
 		String[] array = token.split(";");
-		int idNumber = Integer.parseInt(array[0]);
-		String brokerData = array[1];
-		String name = array[2];
-		Name customerName = parseName(name);
-		String address = array[3];
-		Address customerAddress = parseAddress(address);
-		String email = array[4];
-		ArrayList customerEmail = parseEmail(email);
-		Person customer = new Person(idNumber, brokerData, customerName, customerAddress, customerEmail);
-		return customer;
+		String code = array[0];
+		String label = array[2];
+		String 
 	}
 	
 	public Address parseAddress(String address){

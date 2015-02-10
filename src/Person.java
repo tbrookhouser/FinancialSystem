@@ -3,18 +3,18 @@ import java.util.ArrayList;
 
 public class Person {
  
-	private int idNumber;
+	private String idNumber;
 	private String brokerData;
 	private Name name;
 	private Address address;
-	private ArrayList email;
+	private String[] email;
 	
 	
-	public int getIdNumber() {
+	public String getIdNumber() {
 		return idNumber;
 	}
 
-	public void setIdNumber(int idNumber) {
+	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
 	}
 
@@ -49,24 +49,24 @@ public class Person {
 	}
 
 
-	public ArrayList getEmail() {
+	public String[] getEmail() {
 		return email;
 	}
 
 
-	public void setEmail(ArrayList email) {
+	public void setEmail(String[] email) {
 		this.email = email;
 	}
 
 	public Person(){
-		idNumber = 0;
+		idNumber = "";
 		brokerData = "";
 		this.name = new Name();
 		this.address = new Address();
-		email = new ArrayList<String>();
+		email = new String[0];
 		
 	}
-	public Person(int idNumber, String brokerData, Name name, Address address, ArrayList email){
+	public Person(String idNumber, String brokerData, Name name, Address address, String[] email){
 		this.idNumber = idNumber;
 		this.brokerData = brokerData;
 		this.name = name;
