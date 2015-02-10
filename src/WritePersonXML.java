@@ -90,10 +90,9 @@ public class WritePersonXML {
 		Element emails = doc.createElement("emails");
 		personTag.appendChild(emails);
 		
-		for(int i = 0; i< person.getEmail().size(); i++){  
-			String [] emailArray = new String [person.getEmail().size()];
-			ArrayList <String> emailList = person.getEmail();
-			emailArray[i] = emailList.get(i);
+		for(int i = 0; i< person.getEmail().length; i++){  
+			String [] emailArray = new String [person.getEmail().length];
+			emailArray[i] = person.getEmail()[i];
 			
 			Element string = doc.createElement("string");
 			string.appendChild(doc.createTextNode(emailArray[i]));
