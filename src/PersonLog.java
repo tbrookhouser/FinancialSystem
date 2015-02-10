@@ -13,6 +13,7 @@ public class PersonLog {
 		
 		//creates a new ArrayList to store people
 		ArrayList<Person> personList = new ArrayList<Person>();
+		WritePersonXML writePersonXml = new WritePersonXML();
 		
 		/**
 		 * returns the person array List
@@ -69,7 +70,8 @@ public class PersonLog {
 			String line = null;
 			while((line = reader.readLine()) != null)//while there is still a line in the file
 			{
-				personList.add(parsePerson(line));
+				personObject = personList.add(parsePerson(line));
+				writePersonXML.writeToPersonXml(personObject);
 			}
 		}
 		

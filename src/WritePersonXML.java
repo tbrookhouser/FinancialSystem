@@ -20,14 +20,16 @@ public class WritePersonXML {
 		Person person = new Person();
 		Name name = new Name();
 		Address address = new Address();
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 	}
  
-	public static void main() {
+	public void writeToPersonXml() {
  
 	  try {
  
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+		//DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		//DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
  
 		// root elements
 		Document doc = docBuilder.newDocument();
