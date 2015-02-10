@@ -10,9 +10,6 @@ public class FileProcessor {
 	
 	public void processFile(fileName){
 		personLog.splitPerson(fileName);
-		for(i = 0; i < ; i++){
-			WritePersonXML();
-		}
 	}
 	public static void main(String[] args){
 		FileProcessor fileProcessor = new FileProcessor();
