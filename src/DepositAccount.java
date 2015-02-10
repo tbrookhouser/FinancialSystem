@@ -1,5 +1,5 @@
 
-public class DepositAccount {
+public class DepositAccount extends Asset{
 	private String code;
 	private String label;
 	private double apr;
