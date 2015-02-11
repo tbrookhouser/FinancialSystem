@@ -78,22 +78,23 @@ public class PersonLog {
 				System.out.println(line);
 				Person person = parsePerson(line);
 				personList.add(person);
-				writePerson(person);
+				writePersonXml(person);
 			}
+			//System.out.print(personList);
 		}
-		
-		public void writePerson(Person person) {
+		public void writePersonXml( Person person) {
 		    System.out.println("save person XML");
 		    FileOutputStream fos = null;
 		    try{            
 		        String xml = xstream.toXML(person);
-		        fos = new FileOutputStream("data/Persons.xml", true);
+		        fos = new FileOutputStream("data/Persons.xml");
 		        fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8"));
 		        byte[] bytes = xml.getBytes("UTF-8");
 		        fos.write(bytes);
+		        System.out.println("hi");
 
 		    }catch (Exception e){
-		        System.err.println("Error in XML Write: " + e.getMessage());
+		        System.out.println("Error in XML Write: " + e.getMessage());
 		    }
 		    finally{
 		        if(fos != null){
@@ -105,6 +106,8 @@ public class PersonLog {
 		        }
 		    }
 		}
+		
+		
 		
 		/**
 		 * parseVehicle takes a string and splits it into an array by each space
