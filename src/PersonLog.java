@@ -16,6 +16,7 @@ public class PersonLog {
 		
 		//creates a new ArrayList to store people
 		ArrayList<Person> personList = new ArrayList<Person>();
+		ArrayList<String> customerEmail = new ArrayList<String>();
 		//WritePersonXML writePersonXml = new WritePersonXML();
 		XStream xstream = new XStream();
 		
@@ -120,7 +121,12 @@ public class PersonLog {
 			Name customerName = parseName(name);
 			String address = array[3];
 			Address customerAddress = parseAddress(address);
-			String [ ] customerEmail = new String[] {"hey"};
+			if (array.length == 5){
+				customerEmail = parseEmail(array[4]);
+			}
+			else{
+				customerEmail.add("");
+			}
 			Person customer = new Person(idNumber, brokerData, customerName, customerAddress, customerEmail);
 			return customer;
 		}
@@ -144,9 +150,9 @@ public class PersonLog {
 			return nameObject;
 		}
 		
-		public String[] parseEmail(String email){
+		public ArrayList<String> parseEmail(String email){
 			System.out.println(email);
-			String[] emailList = email.split(",");
+			ArrayList<String> emailList = new ArrayList<String>(Arrays.asList(email.split(",")));
 			return emailList;
 		}
 

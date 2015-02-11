@@ -7,7 +7,7 @@ public class Person {
 	private String brokerData;
 	private Name name;
 	private Address address;
-	private String[] email;
+	private ArrayList<String> email;
 	
 	
 	public String getIdNumber() {
@@ -49,12 +49,12 @@ public class Person {
 	}
 
 
-	public String[] getEmail() {
+	public ArrayList<String> getEmail() {
 		return email;
 	}
 
 
-	public void setEmail(String[] email) {
+	public void setEmail(ArrayList<String> email) {
 		this.email = email;
 	}
 
@@ -63,10 +63,10 @@ public class Person {
 		brokerData = "";
 		this.name = new Name();
 		this.address = new Address();
-		email = new String[0];
+		email = new ArrayList<String>();
 		
 	}
-	public Person(String idNumber, String brokerData, Name name, Address address, String[] email){
+	public Person(String idNumber, String brokerData, Name name, Address address, ArrayList<String> email){
 		this.idNumber = idNumber;
 		this.brokerData = brokerData;
 		this.name = name;
