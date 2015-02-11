@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,8 +77,32 @@ public class PersonLog {
 				System.out.println(line);
 				Person person = parsePerson(line);
 				personList.add(person);
-				String xml = xstream.toXML(person);
+				savePerson(person);
 			}
+		}
+		
+		public void savePerson(Person person) {
+		    System.out.println("save person XML");
+		    FileOutputStream fos = null;
+		    try{            
+		        String xml = xstream.toXML(person);
+		        fos = new FileOutputStream("data/Persons.xml", true);
+		        fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8"));
+		        byte[] bytes = xml.getBytes("UTF-8");
+		        fos.write(bytes);
+
+		    }catch (Exception e){
+		        System.err.println("Error in XML Write: " + e.getMessage());
+		    }
+		    finally{
+		        if(fos != null){
+		            try{
+		                fos.close();
+		            }catch (IOException e) {
+		                e.printStackTrace();
+		            }
+		        }
+		    }
 		}
 		
 		/**
