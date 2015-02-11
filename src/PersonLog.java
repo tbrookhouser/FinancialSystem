@@ -7,13 +7,16 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import com.thoughtworks.xstream.XStream;
+
 
 
 public class PersonLog {
 		
 		//creates a new ArrayList to store people
 		ArrayList<Person> personList = new ArrayList<Person>();
-		WritePersonXML writePersonXml = new WritePersonXML();
+		//WritePersonXML writePersonXml = new WritePersonXML();
+		XStream xstream = new XStream();
 		
 		/**
 		 * returns the person array List
@@ -73,7 +76,7 @@ public class PersonLog {
 				System.out.println(line);
 				Person person = parsePerson(line);
 				personList.add(person);
-				writePersonXml.writeToPersonXml(person);
+				String xml = xstream.toXML(person);
 			}
 		}
 		
