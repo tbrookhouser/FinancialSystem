@@ -87,9 +87,9 @@ public class AssetLog {
 		while((line = reader.readLine()) != null)//while there is still a line in the file
 		{
 			System.out.println(line);
-			Person account checkAssetType(line);
-			personList.add(person);
-			writePerson(person);
+			Asset asset = checkAssetType(line);
+			assetList.add(asset);
+			writePerson(asset);
 		}
 	}
 	
@@ -123,8 +123,8 @@ public class AssetLog {
 		if (array[1] == "D" ){
 			parseDA(token);
 		}
-		else if (array[2] == "S"){
-			
+		else if (array[1] == "S"){
+			parseStock(token);
 		}
 		else {
 			
@@ -142,18 +142,24 @@ public class AssetLog {
 		String[] array = token.split(";");
 		String code = array[0];
 		String label = array[2];
-		String 
+		String strApr = array[3];
+		double apr = Double.parseDouble(strApr);
+		DepositAccount account = new DepositAccount(code, label,apr);
+		return account;
 	}
 	
-	public Address parseAddress(String address){
-		String[] addressArray = address.split(",");
-		String street1 = addressArray[0];
-		String city = addressArray[1];
-		String state = addressArray[2];
-		String zip = addressArray[3];
-		String country = addressArray[4];
-		Address addressObject = new Address(street1, city, state, zip, country);
-		return addressObject;
+	public Stock parseStock(String token){
+		String[] array = token.split(",");
+		String code = array[0];
+		String label = array[2];
+		String strQuarterlyDividend = array[3];
+		double quarterlyDividend = Double.parseDouble(strQuarterlyDividend);
+		double baseRateOfReturn = Double.parseDouble(array[4]);
+		double betaMeasure = Double.parseDouble(array[5]);
+		String stockSymbol = array[6];
+		double sharePrice = Double.parseDouble(array[7]);
+		Stock stock = new Stock(code,label,quarterlyDividend,baseRateOfReturn,betaMeasure,stockSymbol,sharePrice);
+		return stock;
 	}
 	
 	public Name parseName(String name){
