@@ -1,16 +1,21 @@
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import com.thoughtworks.xstream.XStream;
+
+
 
 public class AssetLog {
 
 	//creates a new ArrayList to store assets
 	ArrayList<Asset> assetList = new ArrayList<Asset>();
+	XStream xstream = new XStream();
 	
 	/**
 	 * returns the person array List
@@ -67,8 +72,49 @@ public class AssetLog {
 		String line = null;
 		while((line = reader.readLine()) != null)//while there is still a line in the file
 		{
-			assetList.add(checkAsset(line));
+			assetList.add(checkAssetType(line));
 		}
+	}
+	
+	public void splitPerson(String fileName) throws IOException
+	{
+		
+		File file = new File(fileName);
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		Scanner personScan = new Scanner(reader);
+		
+		String line = null;
+		while((line = reader.readLine()) != null)//while there is still a line in the file
+		{
+			System.out.println(line);
+			Person account checkAssetType(line);
+			personList.add(person);
+			writePerson(person);
+		}
+	}
+	
+	public void writeAsset(Person person) {
+	    System.out.println("save person XML");
+	    FileOutputStream fos = null;
+	    try{            
+	        String xml = xstream.toXML(person);
+	        fos = new FileOutputStream("data/Persons.xml", true);
+	        fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8"));
+	        byte[] bytes = xml.getBytes("UTF-8");
+	        fos.write(bytes);
+
+	    }catch (Exception e){
+	        System.err.println("Error in XML Write: " + e.getMessage());
+	    }
+	    finally{
+	        if(fos != null){
+	            try{
+	                fos.close();
+	            }catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
 	}
 	
 	
