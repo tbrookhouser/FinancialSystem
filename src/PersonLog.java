@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 
 
@@ -19,7 +20,7 @@ public class PersonLog {
 		ArrayList<String> customerEmail = new ArrayList<String>();
 		//WritePersonXML writePersonXml = new WritePersonXML();
 		XStream xstream = new XStream();
-		
+		Gson gson = new Gson();
 		/**
 		 * returns the person array List
 		 * @return personList

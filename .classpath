@@ -49,5 +49,9 @@
 	<classpathentry kind="lib" path="C:/Users/Brooke/Downloads/xstream-distribution-1.4.7-bin/xstream-1.4.7/lib/xstream-1.4.7.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Brooke/Downloads/xstream-distribution-1.4.7-bin/xstream-1.4.7/lib/xstream-benchmark-1.4.7.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Brooke/Downloads/xstream-distribution-1.4.7-bin/xstream-1.4.7/lib/xstream-hibernate-1.4.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Brooke/Downloads/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Brooke/Downloads/gson-2.3.1.pom"/>
+	<classpathentry kind="lib" path="C:/Users/Brooke/Downloads/gson-2.3.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Brooke/Downloads/gson-2.3.1-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
