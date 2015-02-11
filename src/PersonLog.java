@@ -92,8 +92,7 @@ public class PersonLog {
 			Name customerName = parseName(name);
 			String address = array[3];
 			Address customerAddress = parseAddress(address);
-			String email = array[4];
-			String[] customerEmail = parseEmail(email);
+			String [ ] customerEmail = new String[] {"hey"};
 			Person customer = new Person(idNumber, brokerData, customerName, customerAddress, customerEmail);
 			return customer;
 		}
