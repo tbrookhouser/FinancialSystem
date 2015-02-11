@@ -77,11 +77,11 @@ public class PersonLog {
 				System.out.println(line);
 				Person person = parsePerson(line);
 				personList.add(person);
-				savePerson(person);
+				writePerson(person);
 			}
 		}
 		
-		public void savePerson(Person person) {
+		public void writePerson(Person person) {
 		    System.out.println("save person XML");
 		    FileOutputStream fos = null;
 		    try{            
